@@ -1,0 +1,531 @@
+/**
+ * @author: Peter Slagter (http://twitter.com/pesla - http://github.com/pesla/)
+ * @about:  Solar system experiment with CSS3 transitions, transforms and animations
+ */
+
+
+/**
+ * Defaults
+ */
+
+html, button,
+input, select, textarea {
+	color: #000;
+}
+
+body {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 3000px;
+	height: 100%;
+	font-size: 1em;
+	line-height: 1.4;
+	overflow-y: hidden;
+	overflow-x: scroll;
+}
+
+img {
+	display: block;
+}
+
+/** Toolbar */
+.toolbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: -webkit-calc(100% - 20px);
+	padding: 10px;
+	box-shadow: 0 8px 6px -6px #000;
+	background-color: rgba(0,0,0,0.6);
+}
+
+.toolbar button {
+	padding: 0 10px;
+	line-height: 30px;
+	background-color: transparent;
+	background-origin: border-box;
+	background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0.000, hsla(0.0, 0.0%, 20.0%, 1.00)), color-stop(0.505, hsla(0.0, 0.0%, 10.0%, 1.00)), color-stop(0.507, hsla(0.0, 0.0%, 20.0%, 1.00)), color-stop(1.000, hsla(0.0, 0.0%, 30.0%, 1.00)));
+	background-image: -webkit-linear-gradient(90deg, hsla(0.0, 0.0%, 20.0%, 1.00) 0.0% , hsla(0.0, 0.0%, 10.0%, 1.00) 50.5% , hsla(0.0, 0.0%, 20.0%, 1.00) 50.7%, hsla(0.0, 0.0%, 30.0%, 1.00) 100.0% );
+	border: 1px solid hsla(0.0, 0.0%, 0.0%, 1.00);
+	-webkit-border-radius: 5px;
+	border-radius: 5px 5px 5px 5px;
+	color: #bbb;
+	font-family: "Helvetica","Verdana","Arial","sans-serif";
+	font-size: 12px;
+	text-align: center;
+	text-shadow: 0 1px 0 #000;
+}
+
+/**
+ * Galaxy layout
+ */
+
+html {
+	background: #09070a url(../img/galaxy-bg.jpg) no-repeat fixed 50% 50%;
+}
+
+.planet,
+.planet-set {
+	position: absolute;
+}
+
+.planet {
+	width: 512px;
+	height: 512px;
+}
+
+.planet span {
+	position: relative;
+	display: block;
+}
+
+/**
+ * Sun settings
+ */
+
+.sun {
+	top: -webkit-calc(50% - 192px);
+	left: -webkit-calc(50% - 192px);
+	width: 384px;
+	height: 384px;
+	z-index: 100;
+}
+
+.sun img {
+	-webkit-filter: drop-shadow(#000 0 0 5px);
+}
+
+/** Rotate jupiter and create illustion of 3D by scaling it */
+@-webkit-keyframes rotateSun {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+
+.is-active .sun img {
+	-webkit-animation: rotateSun 180s linear infinite;
+}
+
+/**
+ * Mercury settings
+ */
+
+/** Set z-index */
+@-webkit-keyframes positionMercury {
+	0% { z-index: 145; }
+	25% { z-index: 170; }
+	50% { z-index: 145; }
+	75% { z-index: 65; }
+	100% { z-index: 103; }
+}
+
+/** Move over x-axis */
+@-webkit-keyframes flyMercury {
+	0% { -webkit-transform: translate(0,0); }
+	50% { -webkit-transform: translate(-445px,0); }
+	100% { -webkit-transform: translate(0,0); }
+}
+
+/** Rotate mercury and create illustion of 3D by scaling it */
+@-webkit-keyframes rotateMercury {
+	0% { -webkit-transform: rotate(0deg) scale(0.075,0.075); }
+	25% { -webkit-transform: rotate(90deg) scale(0.1,0.1); }
+	50% { -webkit-transform: rotate(180deg) scale(0.075,0.075); }
+	75% { -webkit-transform: rotate(270deg) scale(0.05,0.05); }
+	100% { -webkit-transform: rotate(360deg) scale(0.075,0.075); }
+}
+
+/** Position mercury */
+.mercury {
+	top: -webkit-calc(50% - 256px);
+	left: -webkit-calc(50% - 30px);
+}
+
+/** Scale down from original size to prevent making it look pixelated when scalign it up */
+.mercury img {
+	-webkit-transform: scale(0.075,0.075);
+}
+
+/** Set animations */
+.is-active .mercury {
+	-webkit-animation: positionMercury 18s linear infinite;
+}
+
+.is-active .mercury span {
+	-webkit-animation: flyMercury 18s cubic-bezier(0.500, 0.000, 0.335, 1.010) infinite;
+}
+
+.is-active .mercury img {
+	-webkit-animation: rotateMercury 18s linear infinite;
+}
+
+/**
+ * Venus settings
+ */
+
+/** Set z-index */
+@-webkit-keyframes positionVenus {
+	0% { z-index: 140; }
+	25% { z-index: 165; }
+	50% { z-index: 140; }
+	75% { z-index: 60; }
+	100% { z-index: 102; }
+}
+
+/** Move over x-axis */
+@-webkit-keyframes flyVenus {
+	0% { -webkit-transform: translate(0,0); }
+	50% { -webkit-transform: translate(-670px,0); }
+	100% { -webkit-transform: translate(0,0); }
+}
+
+/** Rotate venus and create illustion of 3D by scaling it */
+@-webkit-keyframes rotateVenus {
+	0% { -webkit-transform: rotate(0deg) scale(0.25,0.25); }
+	25% { -webkit-transform: rotate(90deg) scale(0.40,0.40); }
+	50% { -webkit-transform: rotate(180deg) scale(0.25,0.25); }
+	75% { -webkit-transform: rotate(270deg) scale(0.10,0.10); }
+	100% { -webkit-transform: rotate(360deg) scale(0.25,0.25); }
+}
+
+/** Position venus */
+.venus {
+	top: -webkit-calc(50% - 256px);
+	left: -webkit-calc(50% + 75px);
+}
+
+/** Scale down from original size to prevent making it look pixelated when scalign it up */
+.venus img {
+	-webkit-transform: scale(0.25,0.25);
+}
+
+/** Set animations */
+.is-active .venus {
+	-webkit-animation: positionVenus 24s linear infinite;
+}
+
+.is-active .venus span {
+	-webkit-animation: flyVenus 24s cubic-bezier(0.500, 0.000, 0.335, 1.010) infinite;
+}
+
+.is-active .venus img {
+	-webkit-animation: rotateVenus 24s linear infinite;
+}
+
+/**
+ * Earth settings
+ */
+
+/** Set z-index */
+@-webkit-keyframes positionEarth {
+	0% { z-index: 150; }
+	25% { z-index: 175; }
+	50% { z-index: 150; }
+	75% { z-index: 50; }
+	100% { z-index: 101; }
+}
+
+/** Move over x-axis */
+@-webkit-keyframes flyEarth {
+	0% { -webkit-transform: translate(0,0); }
+	50% { -webkit-transform: translate(-975px,0); }
+	100% { -webkit-transform: translate(0,0); }
+}
+
+/** Rotate earth and create illustion of 3D by scaling it */
+@-webkit-keyframes rotateEarth {
+	0% { -webkit-transform: rotate(0deg) scale(0.25,0.25); }
+	25% { -webkit-transform: rotate(90deg) scale(0.40,0.40); }
+	50% { -webkit-transform: rotate(180deg) scale(0.25,0.25); }
+	75% { -webkit-transform: rotate(270deg) scale(0.1,0.1); }
+	100% { -webkit-transform: rotate(360deg) scale(0.25,0.25); }
+}
+
+/** Position earth */
+.planet-set-earth {
+	top: -webkit-calc(50% - 256px);
+	left: -webkit-calc(50% + 225px);
+}
+
+/** Scale down from original size to prevent making it look pixelated when scalign it up */
+.planet-set-earth img {
+	-webkit-transform: scale(0.25,0.25);
+}
+
+/** Set animations */
+.is-active .planet-set-earth {
+	-webkit-animation: positionEarth 30s linear infinite;
+}
+
+.is-active .planet-set-earth .planet-set-inner {
+	-webkit-animation: flyEarth 30s cubic-bezier(0.500, 0.000, 0.335, 1.010) infinite;
+}
+
+.is-active .planet-set-earth .earth img {
+	-webkit-animation: rotateEarth 30s linear infinite;
+}
+
+/**
+ * Moon settings
+ */
+
+ /** Set z-index */
+@-webkit-keyframes positionMoon {
+	0% { z-index: 10; }
+	50% { z-index: -2; }
+	100% { z-index: -1; }
+}
+
+/** Move over x-axis */
+@-webkit-keyframes flyMoon {
+	0% { -webkit-transform: translate(0,0); }
+	50% { -webkit-transform: translate(-185px,0); }
+	100% { -webkit-transform: translate(0,0); }
+}
+
+/** Rotate moon and create illustion of 3D by scaling it */
+@-webkit-keyframes rotateMoon {
+	0% { -webkit-transform: rotate(0deg) scale(0.05,0.05); }
+	25% { -webkit-transform: rotate(90deg) scale(0.075,0.075); }
+	50% { -webkit-transform: rotate(180deg) scale(0.05,0.05); }
+	75% { -webkit-transform: rotate(270deg) scale(0.025,0.025); }
+	100% { -webkit-transform: rotate(360deg) scale(0.05,0.05); }
+}
+
+/** Position moon */
+.moon {
+	top: 0;
+	left: 75px;
+}
+
+/** Scale down from original size to prevent making it look pixelated when scalign it up */
+.moon img {
+	-webkit-transform: scale(0.05,0.05);
+}
+
+/** Set animations */
+.is-active .moon {
+	-webkit-animation: positionMoon 10s linear infinite;
+}
+
+.is-active .moon span {
+	-webkit-animation: flyMoon 10s cubic-bezier(0.500, 0.000, 0.335, 1.010) infinite;
+}
+
+.is-active .moon img {
+	-webkit-animation: rotateMoon 10s linear infinite;
+}
+
+/**
+ * Mars settings
+ */
+
+/** Set z-index */
+@-webkit-keyframes positionMars {
+	0% { z-index: 200; }
+	25% { z-index: 250; }
+	50% { z-index: 100; }
+	75% { z-index: 45; }
+	100% { z-index: 110; }
+}
+
+/** Move over x-axis */
+@-webkit-keyframes flyMars {
+	0% { -webkit-transform: translate(0,0); }
+	50% { -webkit-transform: translate(-1300px,0); }
+	100% { -webkit-transform: translate(0,0); }
+}
+
+/** Rotate mars and create illustion of 3D by scaling it */
+@-webkit-keyframes rotateMars {
+	0% { -webkit-transform: rotate(0deg) scale(0.2,0.2); }
+	25% { -webkit-transform: rotate(90deg) scale(0.35,0.35); }
+	50% { -webkit-transform: rotate(180deg) scale(0.2,0.2); }
+	75% { -webkit-transform: rotate(270deg) scale(0.05,0.05); }
+	100% { -webkit-transform: rotate(360deg) scale(0.2,0.2); }
+}
+
+/** Position mars */
+.mars {
+	top: -webkit-calc(50% - 256px);
+	left: -webkit-calc(50% + 420px);
+}
+
+/** Scale down from original size to prevent making it look pixelated when scalign it up */
+.mars img {
+	-webkit-transform: scale(0.2,0.2);
+}
+
+/** Set animations */
+.is-active .mars {
+	-webkit-animation: positionMars 36s linear infinite;
+}
+
+.is-active .mars span {
+	-webkit-animation: flyMars 36s cubic-bezier(0.500, 0.000, 0.335, 1.010) infinite;
+}
+
+.is-active .mars img {
+	-webkit-animation: rotateMars 36s linear infinite;
+}
+
+/**
+ * Jupiter settings
+ */
+
+/** Set z-index */
+@-webkit-keyframes positionJupiter {
+	0% { z-index: 300; }
+	25% { z-index: 350; }
+	50% { z-index: 100; }
+	75% { z-index: 40; }
+	100% { z-index: 120; }
+}
+
+/** Move over x-axis */
+@-webkit-keyframes flyJupiter {
+	0% { -webkit-transform: translate(0,0); }
+	50% { -webkit-transform: translate(-1700px,0); }
+	100% { -webkit-transform: translate(0,0); }
+}
+
+/** Rotate jupiter and create illustion of 3D by scaling it */
+@-webkit-keyframes rotateJupiter {
+	0% { -webkit-transform: rotate(0deg) scale(0.5,0.5); }
+	25% { -webkit-transform: rotate(90deg) scale(0.65,0.65); }
+	50% { -webkit-transform: rotate(180deg) scale(0.5,0.5); }
+	75% { -webkit-transform: rotate(270deg) scale(0.35,0.35); }
+	100% { -webkit-transform: rotate(360deg) scale(0.5,0.5); }
+}
+
+/** Position jupiter */
+.jupiter {
+	top: -webkit-calc(50% - 256px);
+	left: -webkit-calc(50% + 620px);
+}
+
+/** Scale down from original size to prevent making it look pixelated when scalign it up */
+.jupiter img {
+	-webkit-transform: scale(0.5,0.5);
+}
+
+/** Set animations */
+.is-active .jupiter {
+	-webkit-animation: positionJupiter 44s linear infinite;
+}
+
+.is-active .jupiter span {
+	-webkit-animation: flyJupiter 44s cubic-bezier(0.500, 0.000, 0.335, 1.010) infinite;
+}
+
+.is-active .jupiter img {
+	-webkit-animation: rotateJupiter 44s linear infinite;
+}
+
+/**
+ * Saturn settings
+ */
+
+/** Set z-index */
+@-webkit-keyframes positionSaturn {
+	0% { z-index: 400; }
+	25% { z-index: 450; }
+	50% { z-index: 100; }
+	75% { z-index: 35; }
+	100% { z-index: 130; }
+}
+
+/** Move over x-axis */
+@-webkit-keyframes flySaturn {
+	0% { -webkit-transform: translate(0,0); }
+	50% { -webkit-transform: translate(-2100px,0); }
+	100% { -webkit-transform: translate(0,0); }
+}
+
+/** Rotate jupiter and create illustion of 3D by scaling it */
+@-webkit-keyframes rotateSaturn {
+	0% { -webkit-transform: rotate(0deg) scale(0.35,0.35); }
+	25% { -webkit-transform: rotate(90deg) scale(0.50,0.50); }
+	50% { -webkit-transform: rotate(180deg) scale(0.35,0.35); }
+	75% { -webkit-transform: rotate(270deg) scale(0.20,0.20); }
+	100% { -webkit-transform: rotate(360deg) scale(0.35,0.35); }
+}
+
+/** Position jupiter */
+.saturn {
+	top: -webkit-calc(50% - 256px);
+	left: -webkit-calc(50% + 830px);
+}
+
+/** Scale down from original size to prevent making it look pixelated when scalign it up */
+.saturn img {
+	-webkit-transform: scale(0.35,0.35);
+}
+
+/** Set animations */
+.is-active .saturn {
+	-webkit-animation: positionSaturn 48s linear infinite;
+}
+
+.is-active .saturn span {
+	-webkit-animation: flySaturn 48s cubic-bezier(0.500, 0.000, 0.335, 1.010) infinite;
+}
+
+.is-active .saturn img {
+	-webkit-animation: rotateSaturn 48s linear infinite;
+}
+
+/**
+ * Uranus settings
+ */
+
+/** Set z-index */
+@-webkit-keyframes positionUranus {
+	0% { z-index: 500; }
+	25% { z-index: 550; }
+	50% { z-index: 100; }
+	75% { z-index: 30; }
+	100% { z-index: 140; }
+}
+
+/** Move over x-axis */
+@-webkit-keyframes flyUranus {
+	0% { -webkit-transform: translate(0,0); }
+	50% { -webkit-transform: translate(-2540px,0); }
+	100% { -webkit-transform: translate(0,0); }
+}
+
+/** Rotate jupiter and create illustion of 3D by scaling it */
+@-webkit-keyframes rotateUranus {
+	0% { -webkit-transform: rotate(0deg) scale(0.30,0.30); }
+	25% { -webkit-transform: rotate(90deg) scale(0.45,0.45); }
+	50% { -webkit-transform: rotate(180deg) scale(0.30,0.30); }
+	75% { -webkit-transform: rotate(270deg) scale(0.15,0.15); }
+	100% { -webkit-transform: rotate(360deg) scale(0.30,0.30); }
+}
+
+/** Position jupiter */
+.uranus {
+	top: -webkit-calc(50% - 256px);
+	left: -webkit-calc(50% + 1050px);
+}
+
+/** Scale down from original size to prevent making it look pixelated when scalign it up */
+.uranus img {
+	-webkit-transform: scale(0.30,0.30);
+}
+
+/** Set animations */
+.is-active .uranus {
+	-webkit-animation: positionUranus 54s linear infinite;
+}
+
+.is-active .uranus span {
+	-webkit-animation: flyUranus 54s cubic-bezier(0.500, 0.000, 0.335, 1.010) infinite;
+}
+
+.is-active .uranus img {
+	-webkit-animation: rotateUranus 54s linear infinite;
+}
