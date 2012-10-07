@@ -3,7 +3,6 @@
  * @about:  Solar system experiment with CSS3 transitions, transforms and animations
  */
 
-
 /**
  * Defaults
  */
@@ -25,6 +24,14 @@ body {
 	line-height: 1.4;
 	overflow-y: hidden;
 	overflow-x: scroll;
+}
+
+p {
+	margin: 0;
+}
+
+button {
+	cursor: pointer;
 }
 
 img {
