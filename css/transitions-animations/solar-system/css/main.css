@@ -71,7 +71,7 @@ img {
  */
 
 html {
-	background: #09070a url(../img/galaxy-bg.jpg) no-repeat fixed 50% 50%;
+	background: #09070a url(https://raw.github.com/pesla/lab/master/css/transitions-animations/solar-system/img/galaxy-bg.jpg) no-repeat fixed 50% 50%;
 }
 
 .planet,
